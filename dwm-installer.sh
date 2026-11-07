@@ -1,4 +1,4 @@
-#!/bin/sg
+#!/bin/sh
 git clone https://git.suckless.org/dwm
 
 cd dwm
@@ -28,4 +28,3 @@ cd dmenu
 
  echo "type startx to start dwm"
  sleep 5
- 
