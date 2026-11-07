@@ -9,22 +9,22 @@ git clone https://git.suckless.org/surf
 #install dependencies for dwm
 sudo apt install -y libx11-dev libxft-dev libxinerama-dev xorg libxcb-cursor0
 
-make install clean
+sudo make install clean
 
 cd dmenu
- make install clean
+sudo make install clean
 
  cd ../st
- make install clean
+sudo make install clean
 
  cd ../surf
- make install clean
+sudo make install clean
 
- touch -f ~/.xinitrc
+touch -f ~/.xinitrc
 
- echo "exec dwm" > ~/.xinitrc
+echo "exec dwm" > ~/.xinitrc
 
- cd ~/
+cd ~/
 
- echo "type startx to start dwm"
- sleep 5
+echo "type startx to start dwm"
+sleep 5
