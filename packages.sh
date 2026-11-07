@@ -163,6 +163,9 @@ for f in "$HOME"/bin/install-*; do
 done
 
 echo
-echo "Alle installatiescripts zijn behandeld. Systeem wordt nu herstart..."
+echo "Alle installatiescripts zijn behandeld. Systeem wordt nu herstart na 10 sec..."
+echo "Alle scripts staan in je $HOME/bin"
+echo "Installeer sommige scripts die je later nodig kan hebben."
+echo "Als je de dwm windowmanger wil installeren, run het bestand dwm-install.sh in ~/myprograms..."
 sleep 10
 sudo reboot
