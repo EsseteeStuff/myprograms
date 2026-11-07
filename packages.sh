@@ -40,7 +40,7 @@ echo 'alias mdwm="cd ~/myprograms/dwm; sudo make clean install; cd -";' >> ~/.ba
 . ~/.bash_aliases
 
 #install dependencies for dwm
-sudo apt install -y libx11-dev libxft-dev libxinerama-dev xorg libxcb-cursor0 lxterminal lxpolkit xwallpaper rofi
+sudo apt install -y libx11-dev libxft-dev libxinerama-dev xorg libxcb-cursor0 lxterminal lxpolkit xwallpaper rofi alacritty
 
 sudo make clean install
 
