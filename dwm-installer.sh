@@ -13,7 +13,7 @@ sudo apt install -y libx11-dev libxft-dev libxinerama-dev xorg libxcb-cursor0 lx
 
 sudo make clean install
 
-cp ~/myprograms/config.h .
+sudo cp ~/myprograms/config.h .
 sudo make clean install
 
 git clone https://git.suckless.org/dmenu
