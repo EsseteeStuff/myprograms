@@ -23,5 +23,6 @@ echo "exec dwm" > ~/.xinitrc
 
 cd ~/
 
-echo "type startx to start dwm"
+echo "type startx to start a native dwm"
+
 sleep 5

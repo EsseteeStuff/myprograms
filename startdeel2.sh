@@ -33,6 +33,8 @@ cat >> ~/bin/install-flatpak.sh <<'EOF'
 #flatpak
 sudo apt install -y flatpak flatpak-builder flatpak-xdg-utils
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+echo 'export PATH=$PATH:/var/lib/flatpak/exports/bin:$HOME/.local/share/flatpak/exports/bin' >> ~/.bashrc
+echo 'export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share' >> .bashrc
 EOF
 
 cat >> ~/bin/install-vscode.sh <<'EOF'
