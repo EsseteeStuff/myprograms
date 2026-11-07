@@ -17,14 +17,13 @@ sudo apt install -y build-essential \
 		    python3-toml \
 		    python3-wheel \
 		    python3-setuptools \
-		    git \
 		    curl \
 		    mc \
 		    eza \
 		    mdadm \
-                    vim \
-                    htop \
-                    btop \
+            vim \
+            htop \
+            btop \
 		    tk
 
 cat >> ~/bin/install-docker.sh << 'EOF'

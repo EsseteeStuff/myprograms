@@ -1,3 +1,5 @@
+#!/bin/sh
+
 cat >> ~/bin/install-docker.sh << 'EOF'
 #docker
 curl -sSL https://get.docker.com | sh

@@ -27,8 +27,4 @@ sudo apt install -y build-essential \
             btop \
 		    tk
 
-git clone https://github.com/EsseteeStuff/myprograms.git
-cd myprograms
-chmod +x *
-./startdeel2.sh
 
