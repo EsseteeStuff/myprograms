@@ -1,5 +1,9 @@
 #!/bin/sh
-mkdir -p ~/bin
+mkdir -p ~/myprograms/bin
+echo 'export PATH=$PATH:$HOME/myprograms/bin' >> ~/.bashrc
+. ~/.bashrc
+
+echo "Installatie van de software dat ik zeker nodig heb."
 
 #backup maken van sources.list
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
@@ -26,7 +30,9 @@ sudo apt install -y build-essential \
             btop \
 		    tk
 
-chmod +x ~/myprograms/*.sh
+clear
+
+
 
 cat >> install-dwm.sh << 'EOF'
 #!/bin/sh
@@ -70,13 +76,13 @@ echo "type startx to start a native dwm"
 sleep 5
 EOF
 
-cat >> ~/bin/install-docker.sh << 'EOF'
+cat >>  bin/install-docker.sh << 'EOF'
 #docker
 curl -sSL https://get.docker.com | sh
 sudo usermod -aG docker serge
 EOF
 
-cat >> ~/bin/install-nvm << 'EOF'
+cat >>  bin/install-nvm << 'EOF'
 #nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 . ~/.bashrc
@@ -85,13 +91,13 @@ nvm install 24
 nvm use 24
 EOF
 
-cat >> ~/bin/install-opencode.sh << 'EOF'
+cat >>  bin/install-opencode.sh << 'EOF'
 #opencode
 curl -fsSL https://opencode.ai/v2/install | bash
 . ~/.bashrc
 EOF
 
-cat >> ~/bin/install-virt-manager.sh << 'EOF'
+cat >>  bin/install-virt-manager.sh << 'EOF'
 #virt-manager
 sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils virtinst libvirt-daemon virt-manager -y
 sudo virsh net-autostart default
@@ -99,13 +105,13 @@ sudo adduser serge libvirt
 sudo adduser serge libvirt-qemu
 EOF
 
-cat >> ~/bin/install-flatpak.sh <<'EOF'
+cat >>  bin/install-flatpak.sh <<'EOF'
 #flatpak
 sudo apt install -y flatpak flatpak-builder flatpak-xdg-utils
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 EOF
 
-cat >> ~/bin/install-vscode.sh <<'EOF'
+cat >>  bin/install-vscode.sh <<'EOF'
 #code
 wget -O code.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
 sudo apt install -y ./code*.deb
@@ -113,12 +119,12 @@ rm -f code*.deb
 EOF
 
 
-cat >> ~/bin/install-portainer.sh <<'EOF'
+cat >>  bin/install-portainer.sh <<'EOF'
 sudo docker pull portainer/portainer-ce:latest || error "Failed to pull latest Portainer docker image!"
 sudo docker run -d -p 9500:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest --logo "https://github.com/novaspirit/pi-hosted/blob/master/images/pi-hosted-logo.png" || error "Failed to run Portainer docker image!"
 EOF
 
-cat >> ~/bin/update-portainer.sh <<'EOF'
+cat >>  bin/update-portainer.sh <<'EOF'
 #update portainer
 portainer_pid=`docker ps | grep portainer-ce | awk '{print $1}'`
 portainer_name=`docker ps | grep portainer-ce | awk '{print $2}'`
@@ -129,7 +135,7 @@ sudo docker rmi $portainer_name || error "Failed to remove/untag images from the
 sudo docker run -d -p 9500:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest --logo "https://github.com/novaspirit/pi-hosted/blob/master/images/pi-hosted-logo.png" || error "Failed to execute newer version of Portainer!"
 EOF
 
-cat >> ~/bin/reinstall-portainer.sh <<'EOF'
+cat >>  bin/reinstall-portainer.sh <<'EOF'
 #reinstall portainer
 portainer_pid=`docker ps | grep portainer-ce | awk '{print $1}'`
 portainer_name=`docker ps | grep portainer-ce | awk '{print $2}'`
@@ -146,7 +152,7 @@ echo now doing a fresh install of portainer
 sudo docker run -d -p 9500:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest --logo "https://github.com/novaspirit/pi-hosted/blob/master/images/pi-hosted-logo.png" || error "Failed to execute newer version of Portainer!"
 EOF
 
-cat >> ~/bin/install-sudo-without-password.sh <<'EOF'
+cat >>  bin/install-sudo-without-password.sh <<'EOF'
 #sudo zonder password in /etc/sudoers.d
 u=$(whoami)
 echo "$u ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/90-$u-nopasswd >/dev/null
@@ -154,7 +160,7 @@ sudo chmod 0440 /etc/sudoers.d/90-$u-nopasswd
 sudo visudo -c
 EOF
 
-chmod +x ~/bin/*
+chmod +x bin/*
 
 cat >> ~/.bash_aliases <<'EOF'
 alias apin='sudo apt install'
@@ -170,14 +176,22 @@ EOF
 
 . ~/.bash_aliases
 
+clear
+
+echo "Nu krijg je de kans om extra scripts te installeren."
+echo "Als je kiest om het script niet te installeren"
+echo "Dan kan je ze ook achteraf installeren."
+echo "De scripts staat in ~/myprograms/bin.\n\n\n"
+
+read -n 1 -s -r -p "Druk op een toets..." </dev/tty
 
 
 
 #finally: alle install-* scripts in ~/bin één voor één aanbieden
 echo
-echo "=== Installatiescripts gevonden in ~/bin ==="
+echo "=== Installatiescripts gevonden in bin ==="
 
-for f in "$HOME"/bin/install-*; do
+for f in "bin/install-*; do
     # geen enkel bestand gevonden? dan bestaat de glob letterlijk
     [ -e "$f" ] || continue
 
@@ -206,10 +220,8 @@ for f in "$HOME"/bin/install-*; do
     esac
 done
 
-echo
-echo "Alle installatiescripts zijn behandeld. Systeem wordt nu herstart na 10 sec..."
-echo "Alle scripts staan in je $HOME/bin"
-echo "Installeer sommige scripts die je later nodig kan hebben."
-echo "Als je de dwm windowmanger wil installeren, run het bestand dwm-install.sh in ~/myprograms..."
+clear
+
+echo "Het systeem wordt nu opnieuw opgestart."
 sleep 10
 sudo reboot
