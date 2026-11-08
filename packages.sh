@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 mkdir -p ~/myprograms/bin
 echo 'export PATH=$PATH:$HOME/myprograms/bin' >> ~/.bashrc
 . ~/.bashrc
@@ -34,7 +34,7 @@ clear
 
 
 
-cat >> install-dwm.sh << 'EOF'
+cat >> bin/install-dwm.sh << 'EOF'
 #!/bin/sh
 
 git clone https://git.suckless.org/dwm
@@ -183,7 +183,7 @@ echo "Als je kiest om het script niet te installeren"
 echo "Dan kan je ze ook achteraf installeren."
 echo "De scripts staat in ~/myprograms/bin.\n\n\n"
 
-read -n 1 -s -r -p "Druk op een toets..." </dev/tty
+read -n 1 -s -r -p "Druk op een toets..." </dev/tty || true
 
 
 
@@ -191,7 +191,7 @@ read -n 1 -s -r -p "Druk op een toets..." </dev/tty
 echo
 echo "=== Installatiescripts gevonden in bin ==="
 
-for f in "bin/install-*; do
+for f in bin/install-*; do
     # geen enkel bestand gevonden? dan bestaat de glob letterlijk
     [ -e "$f" ] || continue
 
@@ -222,6 +222,10 @@ done
 
 clear
 
-echo "Het systeem wordt nu opnieuw opgestart."
-sleep 10
-sudo reboot
+echo "Het systeem kan nu opnieuw opgestart worden."
+read -r -n 1 -p "Nu rebooten? [j/N] " antwoord </dev/tty || true
+echo
+case "$antwoord" in
+    j|J|y|Y) sudo reboot ;;
+    *) echo "Geen reboot. Je kan later zelf 'sudo reboot' doen." ;;
+esac
