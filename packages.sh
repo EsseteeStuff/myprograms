@@ -25,9 +25,9 @@ sudo apt install -y build-essential \
 		    mc \
 		    eza \
 		    mdadm \
-                    vim \
-                    htop \
-                    btop \
+            vim \
+            htop \
+            btop \
 		    tk \
 		    pcmanfm \
 		    geany \
