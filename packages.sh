@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 mkdir -p ~/myprograms/bin
-echo 'export PATH=$PATH:$HOME/myprograms/bin' >> ~/.bashrc
+echo 'export PATH=$PATH:$HOME/myprograms/bin:$HOME/bin' >> ~/.bashrc
 . ~/.bashrc
 
 echo "Installatie van de software dat ik zeker nodig heb."
@@ -193,7 +193,7 @@ clear
 echo "Nu krijg je de kans om extra scripts te installeren."
 echo "Als je kiest om het script niet te installeren"
 echo "Dan kan je ze ook achteraf installeren."
-echo "De scripts staat in ~/myprograms/bin.\n\n\n"
+echo "De scripts staat in ~/myprograms/bin."
 
 read -n 1 -s -r -p "Druk op een toets..." </dev/tty || true
 
