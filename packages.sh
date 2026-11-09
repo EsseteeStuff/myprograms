@@ -80,12 +80,16 @@ cd ~/
 clear
 EOF
 
+sleep 1
+
 cat >>  bin/install-docker.sh << 'EOF'
 #docker
 curl -sSL https://get.docker.com | sh
 sudo usermod -aG docker serge
 clear
 EOF
+
+sleep 1
 
 cat >>  bin/install-nvm << 'EOF'
 #nvm
@@ -97,12 +101,16 @@ nvm use 24
 clear
 EOF
 
+sleep 1
+
 cat >>  bin/install-opencode.sh << 'EOF'
 #opencode
 curl -fsSL https://opencode.ai/v2/install | bash
 . ~/.bashrc
 clear
 EOF
+
+sleep 1
 
 cat >>  bin/install-virt-manager.sh << 'EOF'
 #virt-manager
@@ -113,12 +121,16 @@ sudo adduser serge libvirt-qemu
 clear
 EOF
 
+sleep 1
+
 cat >>  bin/install-flatpak.sh <<'EOF'
 #flatpak
 sudo apt install -y flatpak flatpak-builder flatpak-xdg-utils
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 clear
 EOF
+
+sleep 1
 
 cat >>  bin/install-vscode.sh <<'EOF'
 #code
@@ -128,12 +140,15 @@ rm -f code*.deb
 clear
 EOF
 
+sleep 1
 
 cat >>  bin/install-portainer.sh <<'EOF'
 sudo docker pull portainer/portainer-ce:latest || error "Failed to pull latest Portainer docker image!"
 sudo docker run -d -p 9500:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest --logo "https://github.com/novaspirit/pi-hosted/blob/master/images/pi-hosted-logo.png" || error "Failed to run Portainer docker image!"
 clear
 EOF
+
+sleep 1
 
 cat >>  bin/update-portainer.sh <<'EOF'
 #update portainer
@@ -146,6 +161,8 @@ sudo docker rmi $portainer_name || error "Failed to remove/untag images from the
 sudo docker run -d -p 9500:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest --logo "https://github.com/novaspirit/pi-hosted/blob/master/images/pi-hosted-logo.png" || error "Failed to execute newer version of Portainer!"
 clear
 EOF
+
+sleep 1
 
 cat >>  bin/reinstall-portainer.sh <<'EOF'
 #reinstall portainer
@@ -165,6 +182,8 @@ sudo docker run -d -p 9500:9000 -p 9443:9443 --name=portainer --restart=always -
 clear
 EOF
 
+sleep 1
+
 cat >>  bin/install-sudo-without-password.sh <<'EOF'
 #sudo zonder password in /etc/sudoers.d
 u=$(whoami)
@@ -173,6 +192,8 @@ sudo chmod 0440 /etc/sudoers.d/90-$u-nopasswd
 sudo visudo -c
 clear
 EOF
+
+sleep 1
 
 chmod +x bin/*
 
