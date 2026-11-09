@@ -21,25 +21,25 @@ sudo apt install -y build-essential \
 		    python3-toml \
 		    python3-wheel \
 		    python3-setuptools \
-		    curl \
-		    mc \
-		    eza \
-		    mdadm \
+            curl \
+            mc \
+            eza \
+            mdadm \
             vim \
             htop \
             btop \
-		    tk \
-		    pcmanfm \
-		    geany \
-		    geany-plugins \
-		    libfuse2t64 \
+            tk \
+            pcmanfm \
+            geany \
+            geany-plugins \
+            libfuse2t64 \
             bluefish \
             dialog \
             ffmpeg \
             lxsession \
             lxterminal \
             lxpolkit \
-		    trash-cli
+            trash-cli
 
 clear
 
