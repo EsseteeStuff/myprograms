@@ -32,7 +32,10 @@ sudo apt install -y build-essential \
 		    pcmanfm \
 		    geany \
 		    geany-plugins \
-		    libfuse2t64
+		    libfuse2t64 \
+            bluefish \
+            dialog \
+            ffmpeg
 
 clear
 
