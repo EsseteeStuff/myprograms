@@ -1,0 +1,8 @@
+#nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+. ~/.bashrc
+sleep 1
+nvm install --lts
+nvm install 24
+nvm use 24
+clear
