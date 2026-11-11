@@ -41,7 +41,24 @@ sudo apt install -y build-essential \
             lxpolkit \
             trash-cli
 
+cat >> ~/.bash_aliases <<'EOF'
+alias apin='sudo apt install'
+alias purge='sudo apt remove'
+alias fix='sudo apt install --fix-broken'
+alias weg='sudo apt autoremove'
+alias zoek='apt search'
+alias up='sudo apt update && sudo apt upgrade -y'
+alias ssha='eval $(ssh-agent) && ssh-add ~/.ssh/terryn_serge'
+alias sshgit='eval $(ssh-agent) && ssh-add ~/.ssh/myGitKey'
+alias ls='eza -lag'
+alias rm="trash-put"
+alias tl='trash-list'
+alias et="trash-empty"
+alias tr="trash-restore'
 clear
+EOF
+
+. ~/.bash_aliases
 
 cat >> bin/install-bspwm.sh << 'EOF'
 #!/usr/bin/env bash
@@ -95,16 +112,14 @@ echo "exec dwm" >> ~/.xinitrc
 cp -r ~/myprograms/rofi ~/.config/
 
 cd ~/
-clear
-EOF
 
+EOF
 
 
 cat >>  bin/install-docker.sh << 'EOF'
 #docker
 curl -sSL https://get.docker.com | sh
 sudo usermod -aG docker serge
-clear
 EOF
 
 
@@ -116,7 +131,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 nvm install --lts
 nvm install 24
 nvm use 24
-clear
 EOF
 
 
@@ -125,7 +139,6 @@ cat >>  bin/install-opencode.sh << 'EOF'
 #opencode
 curl -fsSL https://opencode.ai/v2/install | bash
 . ~/.bashrc
-clear
 EOF
 
 
@@ -136,7 +149,6 @@ sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils vir
 sudo virsh net-autostart default
 sudo adduser serge libvirt
 sudo adduser serge libvirt-qemu
-clear
 EOF
 
 
@@ -145,7 +157,6 @@ cat >>  bin/install-flatpak.sh <<'EOF'
 #flatpak
 sudo apt install -y flatpak flatpak-builder flatpak-xdg-utils
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-clear
 EOF
 
 
@@ -155,7 +166,6 @@ cat >>  bin/install-vscode.sh <<'EOF'
 wget -O code.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
 sudo apt install -y ./code*.deb
 rm -f code*.deb
-clear
 EOF
 
 
@@ -163,7 +173,6 @@ EOF
 cat >>  bin/install-portainer.sh <<'EOF'
 sudo docker pull portainer/portainer-ce:latest || error "Failed to pull latest Portainer docker image!"
 sudo docker run -d -p 9500:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest --logo "https://github.com/novaspirit/pi-hosted/blob/master/images/pi-hosted-logo.png" || error "Failed to run Portainer docker image!"
-clear
 EOF
 
 
@@ -177,7 +186,7 @@ sudo docker stop $portainer_pid || error "Failed to stop portainer!"
 sudo docker rm $portainer_pid || error "Failed to remove portainer container!"
 sudo docker rmi $portainer_name || error "Failed to remove/untag images from the container!"
 sudo docker run -d -p 9500:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest --logo "https://github.com/novaspirit/pi-hosted/blob/master/images/pi-hosted-logo.png" || error "Failed to execute newer version of Portainer!"
-clear
+
 EOF
 
 
@@ -197,7 +206,7 @@ sudo docker volume prune
 
 echo now doing a fresh install of portainer
 sudo docker run -d -p 9500:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest --logo "https://github.com/novaspirit/pi-hosted/blob/master/images/pi-hosted-logo.png" || error "Failed to execute newer version of Portainer!"
-clear
+
 EOF
 
 
@@ -208,31 +217,14 @@ u=$(whoami)
 echo "$u ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/90-$u-nopasswd >/dev/null
 sudo chmod 0440 /etc/sudoers.d/90-$u-nopasswd
 sudo visudo -c
-clear
+
 EOF
 
 
 
 chmod +x bin/*
 
-cat >> ~/.bash_aliases <<'EOF'
-alias apin='sudo apt install'
-alias purge='sudo apt remove'
-alias fix='sudo apt install --fix-broken'
-alias weg='sudo apt autoremove'
-alias zoek='apt search'
-alias up='sudo apt update && sudo apt upgrade -y'
-alias ssha='eval $(ssh-agent) && ssh-add ~/.ssh/terryn_serge'
-alias sshgit='eval $(ssh-agent) && ssh-add ~/.ssh/myGitKey'
-alias ls='eza -lag'
-alias rm="trash-put"
-alias tl='trash-list'
-alias et="trash-empty"
-alias tr="trash-restore'
-clear
-EOF
 
-. ~/.bash_aliases
 
 clear
 
