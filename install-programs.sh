@@ -127,7 +127,8 @@ EOF
 cat >>  bin/install-nvm << 'EOF'
 #nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-. ~/.bashrc
+sleep 2
+source ~/.bashrc
 nvm install --lts
 nvm install 24
 nvm use 24
@@ -138,7 +139,8 @@ EOF
 cat >>  bin/install-opencode.sh << 'EOF'
 #opencode
 curl -fsSL https://opencode.ai/v2/install | bash
-. ~/.bashrc
+sleep 1
+source ~/.bashrc
 EOF
 
 
