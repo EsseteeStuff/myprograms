@@ -33,4 +33,4 @@ echo "exec dwm" >> ~/.xinitrc
 cp -r ~/myprograms/rofi ~/.config/
 
 cd ~/
-clear
+

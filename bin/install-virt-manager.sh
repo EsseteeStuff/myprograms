@@ -3,4 +3,3 @@ sudo apt install qemu-kvm libvirt-clients libvirt-daemon-system bridge-utils vir
 sudo virsh net-autostart default
 sudo adduser serge libvirt
 sudo adduser serge libvirt-qemu
-clear
