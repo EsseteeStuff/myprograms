@@ -108,7 +108,7 @@ sudo apt install -y build-essential \
                     ffmpeg \
                     trash-cli
 
-cat >> ~/.bash_aliases <<'EOF'
+cat > ~/.bash_aliases <<'EOF'
 alias apin='sudo apt install'
 alias purge='sudo apt remove'
 alias fix='sudo apt install --fix-broken'
@@ -146,6 +146,7 @@ echo 'exec bspwm' >> ~/.xinitrc
 cp -r ~/myprograms/rofi ~/.config/
 EOF
 
+clear
 
 cat > bin/install-dwm.sh << 'EOF'
 #!/usr/bin/env bash
@@ -186,6 +187,8 @@ cd ~/
 
 EOF
 
+clear
+
 
 cat >  bin/install-docker.sh << 'EOF'
 #docker
@@ -193,7 +196,7 @@ curl -sSL https://get.docker.com | sh
 sudo usermod -aG docker serge
 EOF
 
-
+clear
 
 cat >  bin/install-nvm << 'EOF'
 #nvm
@@ -205,7 +208,7 @@ nvm install 24
 nvm use 24
 EOF
 
-
+clear
 
 cat >  bin/install-opencode.sh << 'EOF'
 #opencode
@@ -214,7 +217,7 @@ sleep 1
 source ~/.bashrc
 EOF
 
-
+clear
 
 cat >  bin/install-virt-manager.sh << 'EOF'
 #virt-manager
@@ -224,7 +227,7 @@ sudo adduser serge libvirt
 sudo adduser serge libvirt-qemu
 EOF
 
-
+clear
 
 cat >  bin/install-flatpak.sh <<'EOF'
 #flatpak
@@ -241,14 +244,14 @@ sudo apt install -y ./code*.deb
 rm -f code*.deb
 EOF
 
-
+clear
 
 cat >  bin/install-portainer.sh <<'EOF'
 sudo docker pull portainer/portainer-ce:latest || error "Failed to pull latest Portainer docker image!"
 sudo docker run -d -p 9500:9000 -p 9443:9443 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest --logo "https://github.com/novaspirit/pi-hosted/blob/master/images/pi-hosted-logo.png" || error "Failed to run Portainer docker image!"
 EOF
 
-
+clear
 
 cat >  bin/update-portainer.sh <<'EOF'
 #update portainer
@@ -293,18 +296,17 @@ sudo visudo -c
 
 EOF
 
-
+clear
 
 chmod +x bin/*
 
-
-
-clear
 
 echo "Nu krijg je de kans om extra scripts te installeren."
 echo "Als je kiest om het script niet te installeren"
 echo "Dan kan je ze ook achteraf installeren."
 echo "De scripts staat in ~/myprograms/bin."
+echo "In myprograms/bin staan ook de upgrade en reinstall scripts voor portainer !."
+echo "Gebruik deze scripts om portainer te updaten of herinstalleren."
 
 read -n 1 -s -r -p "Druk op een toets..." </dev/tty || true
 
